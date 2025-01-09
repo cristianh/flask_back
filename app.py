@@ -5,15 +5,19 @@ import cloudinary.uploader
 import os
 import json
 from flask_cors import CORS
+from dotenv import load_dotenv
+
+
+load_dotenv()
 
 app = Flask(__name__)
 CORS(app)
 
 # Configuración de Cloudinary
 cloudinary.config(
-    cloud_name="dl7oqoile",  # Sustituye con tu cloud_name
-    api_key="511562285567879",  # Sustituye con tu api_key
-    api_secret="d802VmOJ78uIQoBlo2cq8sCEuiE",  # Sustituye con tu api_secret
+    cloud_name=os.getenv("CLOUDINARY_CLOUD_NAME"),  # Load from .env
+    api_key=os.getenv("CLOUDINARY_API_KEY"),  # Load from .env
+    api_secret=os.getenv("CLOUDINARY_API_SECRET"),  # Load from .env
     secure=True
 )
 
