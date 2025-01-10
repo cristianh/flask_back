@@ -22,7 +22,7 @@ cloudinary.config(
 )
 
 # Ruta para la página principal donde se mostrarán los videos
-@app.route('/')
+@app.route('/certificados')
 def index():
     try:
          # Obtener una lista de videos desde Cloudinary
