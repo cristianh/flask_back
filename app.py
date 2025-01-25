@@ -33,7 +33,7 @@ def index():
         )
     
         
-        # Construir las URLs sin número de versión
+        # Construir las URLs sin número de versión - v.0.1
         certificados_data = [
             {
                 "nombre": resource['public_id'].split('/')[-1],  # Nombre del archivo
