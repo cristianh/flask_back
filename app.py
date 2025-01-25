@@ -33,11 +33,11 @@ def index():
         )
     
         
-        # Obtener los enlaces de los videos de Cloudinary
+        # Construir las URLs sin número de versión
         certificados_data = [
             {
                 "nombre": resource['public_id'].split('/')[-1],  # Nombre del archivo
-                "url": resource['url']
+                "url": f"https://res.cloudinary.com/{cloudinary.config().cloud_name}/image/upload/{resource['public_id']}.{resource['format']}"  # URL sin versión
             }
             for resource in response['resources']
         ]
