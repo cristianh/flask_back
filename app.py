@@ -37,7 +37,7 @@ def index():
         certificados_data = [
             {
                 "nombre": resource['public_id'].split('/')[-1],  # Nombre del archivo
-                "url": f"https://res.cloudinary.com/{cloudinary.config().cloud_name}/image/upload/{resource['public_id']}.{resource['format']}"  # URL sin versión
+                "url": f"http://res.cloudinary.com/{cloudinary.config().cloud_name}/image/upload/{resource['public_id']}.{resource['format']}"  # URL sin versión
             }
             for resource in response['resources']
         ]
