@@ -29,21 +29,25 @@ def index():
         response = cloudinary.api.resources(
             resource_type="image",  # Solo imagenes
             type="upload",  # Necesitamos especificar el tipo "upload" para recursos subidos
-            prefix="certificados/"  # Carpeta donde se encuentran los videos
+            prefix="certificados/",
+            max_results=100  # Carpeta donde se encuentran los archivos
         )
-    
         
-        # Construir las URLs sin número de versión - v.0.1
+        num_recursos = len(response['resources'])  # Número total de recursos
+
+        # Construir las URLs sin número de versión
         certificados_data = [
             {
                 "nombre": resource['public_id'].split('/')[-1],  # Nombre del archivo
-                "url": f"http://res.cloudinary.com/{cloudinary.config().cloud_name}/image/upload/{resource['public_id']}.{resource['format']}"  # URL sin versión
+                "url": f"http://res.cloudinary.com/{cloudinary.config().cloud_name}/image/upload/{resource['public_id']}.{resource['format']}",  # URL sin versión
             }
             for resource in response['resources']
         ]
         
+        
+          # Número total de elementos
         #return render_template('index.html', certificados=certificados_data)
-        return jsonify(certificados_data)
+        return jsonify({"length": num_recursos,"data":certificados_data})
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
     
