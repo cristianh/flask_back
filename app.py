@@ -46,3 +46,6 @@ def index():
         return jsonify(certificados_data)
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
+    
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
